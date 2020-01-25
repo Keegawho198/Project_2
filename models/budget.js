@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Budget = sequelize.define("Budget", {
-        // Giving the Author model a name of type STRING
+        // 
         category: {
             type: DataTypes.STRING,
             allowNull: false
