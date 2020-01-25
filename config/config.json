@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "cisco123",
+    "password": "",
     "database": "bigWalletDB",
     "host": "127.0.0.1",
     "dialect": "mysql",
