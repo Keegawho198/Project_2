@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Budget = sequelize.define("Budget", {
-        // 
+        // new comment
         category: {
             type: DataTypes.STRING,
             allowNull: false
