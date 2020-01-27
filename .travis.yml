@@ -10,6 +10,6 @@ cache:
 #   - mysql -e 'CREATE DATABASE IF NOT EXISTS bigwalletdb;'
   
 script:
-  - npm run lint
+  # - npm run lint
   - npm run build
   - npm test
