@@ -6,8 +6,9 @@ branches:
 cache:
   directories:
     - node_modules
-before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS bigwalletdb;'
+# before_install:
+#   - mysql -e 'CREATE DATABASE IF NOT EXISTS bigwalletdb;'
+  
 script:
   - npm run lint
   - npm run build
