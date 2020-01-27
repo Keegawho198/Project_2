@@ -9,7 +9,7 @@ cache:
 # before_install:
 #   - mysql -e 'CREATE DATABASE IF NOT EXISTS bigwalletdb;'
   
-script:
+# script:
   # - npm run lint
   # - npm run build
   # - npm test
