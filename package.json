@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "node server.js",
-    "lint": "./node_modules/.bin/eslint **/*.js"
+    "lint": "eslint **/*.js --quiet"
   },
   "repository": {
     "type": "git",
