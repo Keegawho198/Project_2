@@ -4,7 +4,6 @@
   "description": "TBD",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
     "start": "node server.js",
     "lint": "./node_modules/.bin/eslint **/*.js"
   },
