@@ -4,7 +4,6 @@
   "description": "TBD",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
     "start": "node server.js",
     "lint": "./node_modules/.bin/eslint **/*.js"
   },
@@ -31,5 +30,8 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "sequelize": "^5.21.3"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }
