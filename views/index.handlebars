@@ -1,61 +1,88 @@
 <!-- sidebar -->
 <div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+    <div class="item" id="general-tab">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="home icon"></i>
+                <div class="header">General</div>
+            </div>
+            <div class="active content">
+                <a class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Dashboard
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="item">
-        <div class="header">General</div>
-        <div class="menu">
-            <a class="item">
-                <div>
-                    <i class="icon tachometer alternate"></i>
-                    Dashboard
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="user md icon"></i>
+                <div class="header">
+                    Manage
                 </div>
-            </a>
+            </div>
+            <div class="active content">
+                <a class="item">
+                    <div><i class="cogs icon"></i>Budget</div>
+                </a>
+                <a class="item">
+                    <div><i class="users icon"></i>Expenses</div>
+                </a>
+            </div>
         </div>
     </div>
     <div class="item">
-        <div class="header">
-            Administration
-        </div>
-        <div class="menu">
-            <a class="item">
-                <div><i class="cogs icon"></i>Budget</div>
-            </a>
-            <a class="item">
-                <div><i class="users icon"></i>Expenses</div>
-            </a>
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="icon chart line"></i>
+                <div class="header">
+                    Insights
+                </div>
+            </div>
+            {{!-- <div class="active content">
+            </div> --}}
         </div>
     </div>
 
-    <a href="#" class="item">
-        <div>
-            <i class="icon chart line"></i>
-            Analytics
-        </div>
-    </a>
     <div class="item">
-        <div class="header">
-            Budget Usage
-        </div>
-        <div class="ui tiny olive inverted progress">
-            <div class="bar" style="width: 54%"></div>
-            <div class="label">Food and Dine Out</div>
-        </div>
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="eye icon"></i>
+                <div class="header">Snapshots</div>
+            </div>
+            <div class="active content">
+                <a class="item">
+                    <div class="header">
+                        Budget Usage
+                    </div>
+                    <div class="ui tiny olive inverted progress">
+                        <div class="bar" style="width: 54%"></div>
+                        <div class="label">Food and Dine Out</div>
+                    </div>
 
-        <div class="ui tiny teal inverted progress">
-            <div class="bar" style="width:78%"></div>
-            <div class="label">Transportation</div>
-        </div>
+                    <div class="ui tiny teal inverted progress">
+                        <div class="bar" style="width:78%"></div>
+                        <div class="label">Transportation</div>
+                    </div>
 
-        <div class="ui tiny purple inverted progress">
-            <div class="bar" style="width: 54%"></div>
-            <div class="label">Bills</div>
-        </div>
+                    <div class="ui tiny purple inverted progress">
+                        <div class="bar" style="width: 54%"></div>
+                        <div class="label">Bills</div>
+                    </div>
 
-        <div class="ui tiny yellow inverted progress">
-            <div class="bar" style="width:78%"></div>
-            <div class="label">Entertainment</div>
+                    <div class="ui tiny yellow inverted progress">
+                        <div class="bar" style="width:78%"></div>
+                        <div class="label">Entertainment</div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>
+
 
 <!-- sidebar -->
 <!-- top nav -->
@@ -65,10 +92,10 @@
         <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
             <i class="sidebar icon"></i>
         </a>
-        <a href="#" class="header item" id="brand-header">
-            <i class="fas fa-wallet"></i>
+        <div class="header item" id="brand-header">
+            <i class="money bill alternate outline icon"></i>
             Big Wallet
-        </a>
+        </div>
     </div>
 
     <div class="right menu">
@@ -90,12 +117,11 @@
 </nav>
 
 <!-- top nav -->
-
 <div class="pusher">
     <div class="main-content">
         <div class="ui grid stackable padded">
-            <div class="four wide computer eight wide tablet sixteen wide mobile column">
-                <div class="ui fluid card">
+            <div class="four wide computer eight wide tablet sixteen wide mobile column" id="over-spend-container">
+                <div class="ui raised fluid card " id="over-spending-card">
                     <div class="content">
                         <div class="ui right floated header red">
                             <i class="icon shopping cart"></i>
@@ -106,7 +132,7 @@
                             </div>
                         </div>
                         <div class="meta">
-                            Over-spending Categories
+                            Overspending Categories
                         </div>
                         <div class="description">
                             Your actual expenses this month have exceeded the budgeted amount.
@@ -114,13 +140,14 @@
                     </div>
                     <div class="extra content">
                         <div class="ui two buttons">
-                            <div class="ui red button">More Info</div>
+                            <div class="ui red button">Exceesive Expenditure</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="four wide computer eight wide tablet sixteen wide mobile column">
-                <div class="ui fluid card">
+            <div class="four wide computer eight wide tablet sixteen wide mobile column"
+                id="daily-expenditure-container">
+                <div class="ui raised fluid card" id="daily-expenditure-card">
                     <div class="content">
                         <div class="ui right floated header green">
                             <i class="money bill alternate icon"></i>
@@ -137,13 +164,13 @@
                     </div>
                     <div class="extra content">
                         <div class="ui two buttons">
-                            <div class="ui green button">More Info</div>
+                            <div class="ui green button">Expense Structure</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="four wide computer eight wide tablet sixteen wide mobile column">
-                <div class="ui fluid card">
+            <div class="four wide computer eight wide tablet sixteen wide mobile column" id="utilization-container">
+                <div class="ui raised fluid card" id="utilization-card">
                     <div class="content">
                         <div class="ui right floated header teal">
                             <i class="icon tachometer alternate"></i>
@@ -160,13 +187,13 @@
                     </div>
                     <div class="extra content">
                         <div class="ui two buttons">
-                            <div class="ui teal button">More Info</div>
+                            <div class="ui teal button">Budget Utilization</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="four wide computer eight wide tablet sixteen wide mobile column">
-                <div class="ui fluid card">
+            <div class="four wide computer eight wide tablet sixteen wide mobile column" id="financial-goal-container">
+                <div class="ui raised fluid card" id="financial-goal-card">
                     <div class="content">
                         <div class="ui right floated header purple">
                             <i class="icon trophy"></i>
@@ -183,52 +210,101 @@
                     </div>
                     <div class="extra content">
                         <div class="ui two buttons">
-                            <div class="ui purple button">More Info</div>
+                            <div class="ui purple button">Financial Analytics</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {{!-- <h1 class="ui grey header">Expenditure Status</h1> --}}
-        <h4 class="ui horizontal divider grey header">
-            <i class="list alternate outline icon"></i>
-            Expenditure Status
-        </h4>
-        <table class="ui celled table">
-            <thead>
-                <tr>
-                    <th>Category Name</th>
-                    <th>Budgeted Ammount</th>
-                    <th>Month-to-Date Expense</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Transportation</td>
-                    <td>$600</td>
-                    <td>$200</td>
-                    <td>Under Budget</td>
-                </tr>
-                <tr class="error">
-                    <td>Food and Dine out</td>
-                    <td>$1000</td>
-                    <td>$1200</td>
-                    <td><i class="attention icon"></i>Over-spending</td>
-                </tr>
-                <tr>
-                    <td>Bills</td>
-                    <td>$1000</td>
-                    <td>$500</td>
-                    <td>Under Budget</td>
-                </tr>
-                <tr class="warning">
-                    <td>Entertainment</td>
-                    <td>$1000</td>
-                    <td>$950</td>
-                    <td><i class="warning icon"></i>Close to the limit</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="widget">
+            <div class="ui raised segment" id="drilldown">
+                <h2 class="ui horizontal divider red header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Overspending Categories
+                </h2>
+                {{!-- <div class="ui centered grid stackable padded"> --}}
+                    {{!-- statistics --}}
+                    <div class="ui three small statistics">
+                        {{!-- overspent percentage --}}
+                        <div class=" statistic">
+                            <div class="value">
+                                128%
+                            </div>
+                            <div class="label">
+                                Overspent
+                            </div>
+                        </div>
+                        {{!-- overspent percentage --}}
+                        <div class=" statistic">
+                            <div class="value">
+                                $1200
+                            </div>
+                            <div class="label">
+                                Exceeded Amount
+                            </div>
+                        </div>
+
+                        {{!-- Number of Counts Violated --}}
+                        <div class=" statistic">
+                            <div class="value">
+                                3
+                            </div>
+                            <div class="label">
+                                Violated Counts
+                            </div>
+                        </div>
+                    </div>
+                {{!-- </div> --}}
+
+                 <div id="chartdiv"></div>
+            </div>
+        </div>
+        <div class="widget">
+            <div class="ui raised segment">
+                <h2 class="ui horizontal divider grey header fluid">
+                    <div class="ui centered grid padded">
+                        <div class="column">
+                            <i class="list alternate outline icon"></i>
+                            Expenditure Status
+                </h2>
+                <table class="ui celled padded table">
+                    <thead>
+                        <tr>
+                            <th class="table-thead">Category Name</th>
+                            <th class="table-thead">Budgeted Ammount</th>
+                            <th class="table-thead">Month-to-Date Expense</th>
+                            <th class="table-thead">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transportation</td>
+                            <td>$600</td>
+                            <td>$200</td>
+                            <td>Under Budget</td>
+                        </tr>
+                        <tr class="error">
+                            <td>Food and Dine out</td>
+                            <td>$1000</td>
+                            <td>$1200</td>
+                            <td><i class="attention icon"></i>Over-spending</td>
+                        </tr>
+                        <tr>
+                            <td>Bills</td>
+                            <td>$1000</td>
+                            <td>$500</td>
+                            <td>Under Budget</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>Entertainment</td>
+                            <td>$1000</td>
+                            <td>$950</td>
+                            <td><i class="warning icon"></i>Close to the limit</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+</div>
 </div>
