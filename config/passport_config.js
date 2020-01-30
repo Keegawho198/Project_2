@@ -7,7 +7,7 @@ const passport = require("passport");
 
 const authenticateUser = async (email, password, done) => {
   const user = await db.User.findOne({
-    Where: {
+    where: {
       email: email
     }
   })

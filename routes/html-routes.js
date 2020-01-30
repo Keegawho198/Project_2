@@ -33,4 +33,9 @@ module.exports = function (app) {
     next()
   }
 
+  app.get("/budget", function (req, res) {
+    console.log({req: req.user});
+    res.render("budget", {req: req.user});
+  })
+
 }

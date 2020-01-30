@@ -6,7 +6,7 @@ module.exports = function (app) {
     //define all routes handling function here
 
     app.post("/api/signup", checkNotAuthenticated, async function (req, res) {
-        const { firstName, lastName, email, password,gender, country } = req.body;
+        const { firstName, lastName, email, password, gender, country } = req.body;
         console.log(req.body);
         const result = await db.User.create({
             firstName: firstName,
@@ -23,14 +23,14 @@ module.exports = function (app) {
         successRedirect: `/index`,
         failureRedirect: `/`,
         failureFlash: true
-    }),(req, res)=>{
+    }), (req, res) => {
         res.json(req.user);
     });
 
-    app.get("/api/logout", function(req, res) {
+    app.get("/api/logout", function (req, res) {
         req.logout();
         res.redirect("/");
-      });
+    });
 
     function checkNotAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
@@ -38,4 +38,30 @@ module.exports = function (app) {
         }
         next()
     };
+    app.get("/api/budget", function (req, res) {
+        db.Budget.findAll({
+            where: {
+                UserId: req.user.id
+              },
+        }).then(function (results) {
+            console.log(results);
+            res.json(results);
+        });
+
+    });
+
+    app.post("/api/newcat", function (req, res) {
+
+        console.log("Budget Data:");
+        console.log(req.body);
+
+        db.Budget.create({
+            category: req.body.category,
+            amount: req.body.amount,
+            UserId: req.user.id
+        }).then(function (results) {
+            res.end();
+        });
+
+    });
 }
