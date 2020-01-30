@@ -22,7 +22,6 @@ module.exports = function (app) {
     if (req.isAuthenticated()) {
       return next()
     }
-
     res.redirect('/login')
   }
 
