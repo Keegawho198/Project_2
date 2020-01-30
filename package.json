@@ -32,12 +32,6 @@
     "sequelize": "^5.21.3"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "eslint": "^6.8.0",
     "jest": "^25.1.0"
-
-=======
-    "jest": "^25.1.0"
->>>>>>> 07b79240a7d9ac751b2941bb9cd6564453e8aaa9
   }
 }
