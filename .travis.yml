@@ -9,7 +9,7 @@ cache:
 services:
     - mysql
 before_install:
-  - mysql -e 'CREATE DATABASE testdb;'
+  # - mysql -e 'CREATE DATABASE bigWalletDB;'
 script:
   # - npm run build
   # - npm run lint
