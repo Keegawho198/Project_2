@@ -4,7 +4,6 @@
   "description": "TBD",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
     "start": "node server.js",
     "lint": "./node_modules/.bin/eslint **/*.js"
   },
@@ -25,6 +24,7 @@
     "express-flash": "0.0.2",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.0",
+    "jest": "^25.1.0",
     "method-override": "^3.0.0",
     "mysql2": "^2.1.0",
     "passport": "^0.4.1",

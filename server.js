@@ -30,6 +30,7 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(passport.initialize());
+
 app.use(passport.session());
 app.use(methodOverride('_method'));
 // app.use(flash());
@@ -40,7 +41,7 @@ require("./routes/api-routes")(app);
 
 db.sequelize.sync({force: true}).then(()=>{
     app.listen(PORT, ()=>{
-        console.log("server started\nhttps://localhost:%s",PORT);
+        console.log("server started\nhttp://localhost:%s",PORT);
     })
 })
  
