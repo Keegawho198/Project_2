@@ -18,6 +18,19 @@ module.exports = function (app) {
     res.render("index", { name: userName});
   })
 
+  app.get("/budget", checkAuthenticated, function (req, res) {
+    const userName = `${req.user.firstName} ${req.user.lastName}`;
+    res.render("budget", { name: userName});
+  })
+
+  app.get("/insights",checkAuthenticated, function (req, res) {
+    const userName = `${req.user.firstName} ${req.user.lastName}`;
+    const userId = req.user.id;
+    console.log(userId);
+
+    res.render("insights",{ name: userName});
+  })
+
   function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next()

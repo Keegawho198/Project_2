@@ -38,7 +38,7 @@ app.use(methodOverride('_method'));
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
-db.sequelize.sync().then(()=>{
+db.sequelize.sync({force: true}).then(()=>{
     app.listen(PORT, ()=>{
         console.log("server started\nhttps://localhost:%s",PORT);
     })

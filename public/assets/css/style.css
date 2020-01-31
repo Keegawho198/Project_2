@@ -100,3 +100,56 @@ body>.grid {
   max-width: 100%;
   height: 500px;
 }
+
+#incomes-accordion{
+  border-left: 10px solid blue;
+  border-top: 2px solid blue;
+  border-right: 2px solid blue;
+}
+
+#home-utilities-accordion{
+  border-left: 10px solid #00b0db;
+  border-top: 2px solid #00b0db;
+  border-right: 2px solid #00b0db;
+}
+
+#groceries-accordion{
+  border-left: 10px solid #7c439a;
+  border-top: 2px solid #7c439a;
+  border-right: 2px solid #7c439a;
+}
+
+#transport-accordion{
+  border-left: 10px solid #b1953a;
+  border-top: 2px solid #b1953a;
+  border-right: 2px solid #b1953a;
+}
+
+#ent-eatout-accordion{
+  border-left: 10px solid #ef7929;
+  border-top: 2px solid #ef7929;
+  border-right: 2px solid #ef7929;
+}
+
+#total-accordion{
+  border-left: 10px solid #7b9e10;
+  border-top: 2px solid #7b9e10;
+  border-bottom: 2px solid #7b9e10;
+  border-right: 2px solid #7b9e10;
+}
+
+
+
+.budget-cat-total{
+  float: right;
+  font-size: 22px;
+}
+.budget-cat-title{
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.budget-label{
+  font-size: 18px;
+  margin-left:10px;
+}

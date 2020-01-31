@@ -8,11 +8,13 @@ module.exports = function (sequelize, DataTypes) {
         amount: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        cadence: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     });
     Budget.associate = function (models) {
-        // We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
         Budget.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false

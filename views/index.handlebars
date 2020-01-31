@@ -7,7 +7,7 @@
                 <div class="header">General</div>
             </div>
             <div class="active content">
-                <a class="item">
+                <a href="/index" class="item">
                     <div>
                         <i class="icon tachometer alternate"></i>
                         Dashboard
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="active content">
-                <a class="item">
+                <a class="item" href="/budget">
                     <div><i class="cogs icon"></i>Budget</div>
                 </a>
                 <a class="item">
@@ -35,16 +35,12 @@
         </div>
     </div>
     <div class="item">
-        <div class="ui inverted accordion">
-            <div class="active title">
-                <i class="icon chart line"></i>
-                <div class="header">
-                    Insights
-                </div>
+        <a href="/insights">
+            <i class="icon chart line"></i>
+            <div class="header" id="insights">
+                Insights
             </div>
-            {{!-- <div class="active content">
-            </div> --}}
-        </div>
+        </a>
     </div>
 
     <div class="item">
@@ -82,8 +78,6 @@
         </div>
     </div>
 </div>
-
-
 <!-- sidebar -->
 <!-- top nav -->
 
@@ -100,7 +94,7 @@
 
     <div class="right menu">
         <a href="#" class="item">
-            Welcome!! {{name}}
+            Welcome!! <span id="username">{{name}}</span>
         </a>
         <div class="ui dropdown item">
             <i class="user cirlce icon"></i>
@@ -140,7 +134,7 @@
                     </div>
                     <div class="extra content">
                         <div class="ui two buttons">
-                            <div class="ui red button">Exceesive Expenditure</div>
+                            <div class="ui red button">Exceesive Expenditures</div>
                         </div>
                     </div>
                 </div>
@@ -164,7 +158,7 @@
                     </div>
                     <div class="extra content">
                         <div class="ui two buttons">
-                            <div class="ui green button">Expense Structure</div>
+                            <div class="ui green button">Expenses Structure</div>
                         </div>
                     </div>
                 </div>
@@ -216,50 +210,57 @@
                 </div>
             </div>
         </div>
-        <div class="widget">
+        <div class="widget" id="exc-expense">
             <div class="ui raised segment" id="drilldown">
                 <h2 class="ui horizontal divider red header" id="osc-divider">
                     <i class="list alternate outline icon"></i>
-                    Overspending Categories
+                    Exceesive Expenditures
                 </h2>
-                {{!-- <div class="ui centered grid stackable padded"> --}}
-                    {{!-- statistics --}}
-                    <div class="ui three small statistics">
-                        {{!-- overspent percentage --}}
-                        <div class=" statistic">
-                            <div class="value">
-                                128%
-                            </div>
-                            <div class="label">
-                                Overspent
-                            </div>
+                {{!-- statistics --}}
+                <div class="ui three small statistics">
+                    {{!-- overspent percentage --}}
+                    <div class=" statistic">
+                        <div class="value">
+                            128%
                         </div>
-                        {{!-- overspent percentage --}}
-                        <div class=" statistic">
-                            <div class="value">
-                                $1200
-                            </div>
-                            <div class="label">
-                                Exceeded Amount
-                            </div>
-                        </div>
-
-                        {{!-- Number of Counts Violated --}}
-                        <div class=" statistic">
-                            <div class="value">
-                                3
-                            </div>
-                            <div class="label">
-                                Violated Counts
-                            </div>
+                        <div class="label">
+                            Overspent
                         </div>
                     </div>
-                {{!-- </div> --}}
+                    {{!-- overspent percentage --}}
+                    <div class=" statistic">
+                        <div class="value">
+                            $1200
+                        </div>
+                        <div class="label">
+                            Exceeded Amount
+                        </div>
+                    </div>
 
-                 <div id="chartdiv"></div>
+                    {{!-- Number of Counts Violated --}}
+                    <div class=" statistic">
+                        <div class="value">
+                            3
+                        </div>
+                        <div class="label">
+                            Violated Counts
+                        </div>
+                    </div>
+                </div>
+                {{!-- column-chart --}}
+                <div class="ui grid stackable padded">
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-column-container">
+                        <canvas id="exc-expense-column-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-timeseries">
+                        <canvas id="exc-expense-bar-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="widget">
+        <div class="widget" id="expense-table">
             <div class="ui raised segment">
                 <h2 class="ui horizontal divider grey header fluid">
                     <div class="ui centered grid padded">
@@ -307,4 +308,5 @@
         </div>
     </div>
 </div>
-</div>
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/dashboard_chart.js"></script>
