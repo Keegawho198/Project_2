@@ -39,9 +39,19 @@ app.use(methodOverride('_method'));
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
-db.sequelize.sync().then(()=>{
+if(process,env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.host)
+} else{
+  connection = mysql.createConnection({
+    host: process.env.host,
+    user: process.env.username,
+    password: process.env.password,
+    database: process.env.database
+  });
+};
+
+db.sequelize.sync({force: true}).then(()=>{
     app.listen(PORT, ()=>{
         console.log("server started\nhttp://localhost:%s",PORT);
     })
 })
- 
