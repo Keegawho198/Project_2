@@ -5,7 +5,10 @@
         "node": true
     },
     "rules": {
-        
+        "no-redeclare": "error"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2017
     }
   }
   
