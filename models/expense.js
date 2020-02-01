@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Expense = sequelize.define("User", {
+    var Expense = sequelize.define("Expense", {
         title: {
             type: DataTypes.STRING,
             allowNull: false,

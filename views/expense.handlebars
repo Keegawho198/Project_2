@@ -1,0 +1,184 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.js">
+
+
+<!-- sidebar -->
+<div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+    <div class="item" id="general-tab">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="home icon"></i>
+                <div class="header">General</div>
+            </div>
+            <div class="active content">
+                <a href="/index" class="item">
+                    <div>
+                        <i class="icon tachometer alternate"></i>
+                        Dashboard
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="user md icon"></i>
+                <div class="header">
+                    Manage
+                </div>
+            </div>
+            <div class="active content">
+                <a class="item" href="/budget">
+                    <div><i class="cogs icon"></i>Budget</div>
+                </a>
+                <a class="item" href="/expenses">
+                    <div><i class="users icon"></i>Expenses</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <a href="/insights">
+            <i class="icon chart line"></i>
+            <div class="header" id="insights">
+                Insights
+            </div>
+        </a>
+    </div>
+
+    <div class="item">
+        <div class="ui inverted accordion">
+            <div class="active title">
+                <i class="eye icon"></i>
+                <div class="header">Snapshots</div>
+            </div>
+            <div class="active content">
+                <a class="item">
+                    <div class="header">
+                        Budget Usage
+                    </div>
+                    <div class="ui tiny olive inverted progress">
+                        <div class="bar" style="width: 54%"></div>
+                        <div class="label">Food and Dine Out</div>
+                    </div>
+
+                    <div class="ui tiny teal inverted progress">
+                        <div class="bar" style="width:78%"></div>
+                        <div class="label">Transportation</div>
+                    </div>
+
+                    <div class="ui tiny purple inverted progress">
+                        <div class="bar" style="width: 54%"></div>
+                        <div class="label">Bills</div>
+                    </div>
+
+                    <div class="ui tiny yellow inverted progress">
+                        <div class="bar" style="width:78%"></div>
+                        <div class="label">Entertainment</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- sidebar -->
+<!-- top nav -->
+
+<nav class="ui top fixed inverted menu">
+    <div class="left menu">
+        <a href="#" class="sidebar-menu-toggler item" data-target="#sidebar">
+            <i class="sidebar icon"></i>
+        </a>
+        <div class="header item" id="brand-header">
+            <i class="money bill alternate outline icon"></i>
+            Big Wallet
+        </div>
+    </div>
+
+    <div class="right menu">
+        <a href="#" class="item">
+            Welcome!! {{name}}
+        </a>
+        <div class="ui dropdown item">
+            <i class="user cirlce icon"></i>
+            <div class="menu">
+                <a href="#" class="item">
+                    <i class="info circle icon"></i> Account</a>
+                <a href="/api/logout" class="item" id="logout">
+                    <i class="sign-out icon"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- top nav -->
+<div class="pusher">
+    <div class="main-content">
+        <div class="widget">
+            <div class="ui raised segment">
+                <h2 class="ui horizontal divider blue header fluid">
+                    <div class="ui centered grid padded">
+                        <div class="column">
+                            <i class="list alternate outline icon"></i>
+                            Expense Management
+                        </div>
+                </h2>
+
+
+                <div id="table">
+                    <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+                                class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                    <table class="ui celled padded table">
+                        <thead>
+                            <tr>
+                                <th class="table-thead">Expense Title</th>
+                                <th class="table-thead">Amount</th>
+                                <th class="table-thead">Date</th>
+                                <th class="table-thead">Budget Category</th>
+                                <th class="table-thead">Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-rowid="1">
+                                <td class="title" contenteditable="true">Lunch</td>
+                                <td class="amount" contenteditable="true">30</td>
+                                <td class="date" contenteditable="true">
+                                    <div class="ui calendar" id="example2">
+                                        <div class="ui input left icon">
+                                            <i class="calendar icon"></i>
+                                            <input type="text" placeholder="Date">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="category">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-category">
+                                        <div class="menu">
+                                            <div class="item" data-value="homeUtil">Home and Utilities</div>
+                                            <div class="item" data-value="groceries">Groceries</div>
+                                            <div class="item" data-value="transport">Transport</div>
+                                            <div class="item" data-value="entEatout">Entertainment and Eat-out</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="operations">
+                                    <div class="ui small fluid basic icon buttons">
+                                        <button class="ui disabled save button" ><i class="green save icon"></i></button>
+                                        <button class="ui button"><i class="red minus circle icon"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/js/expense.js"></script>
