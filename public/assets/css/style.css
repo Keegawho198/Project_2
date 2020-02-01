@@ -55,18 +55,18 @@ body>.grid {
   -webkit-transform: scale(1.03, 1.03);
 }
 
-.widget{
+.widget {
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 15px;
-} 
+}
 
 .main-content {
   margin-top: 40px;
 }
 
-#drilldown{
-  display:none
+#drilldown {
+  display: none
 }
 
 #over-spend-container, #daily-expenditure-container, #utilization-container, #financial-goal-container {
@@ -89,7 +89,7 @@ body>.grid {
   }
 }
 
-.table-thead{
+.table-thead {
   background-color: #009879!important;
   color: #ffffff!important;
   text-align: left!important;
@@ -101,55 +101,58 @@ body>.grid {
   height: 500px;
 }
 
-#incomes-accordion{
+#incomes-accordion {
   border-left: 10px solid blue;
   border-top: 2px solid blue;
   border-right: 2px solid blue;
 }
 
-#home-utilities-accordion{
+#home-utilities-accordion {
   border-left: 10px solid #00b0db;
   border-top: 2px solid #00b0db;
   border-right: 2px solid #00b0db;
 }
 
-#groceries-accordion{
+#groceries-accordion {
   border-left: 10px solid #7c439a;
   border-top: 2px solid #7c439a;
   border-right: 2px solid #7c439a;
 }
 
-#transport-accordion{
+#transport-accordion {
   border-left: 10px solid #b1953a;
   border-top: 2px solid #b1953a;
   border-right: 2px solid #b1953a;
 }
 
-#ent-eatout-accordion{
+#ent-eatout-accordion {
   border-left: 10px solid #ef7929;
   border-top: 2px solid #ef7929;
   border-right: 2px solid #ef7929;
 }
 
-#total-accordion{
+#total-accordion {
   border-left: 10px solid #7b9e10;
   border-top: 2px solid #7b9e10;
   border-bottom: 2px solid #7b9e10;
   border-right: 2px solid #7b9e10;
 }
 
-
-
-.budget-cat-total{
+.budget-cat-total {
   float: right;
   font-size: 22px;
 }
-.budget-cat-title{
+
+.budget-cat-title {
   font-size: 22px;
   font-weight: bold;
 }
 
-.budget-label{
+.budget-label {
   font-size: 18px;
-  margin-left:10px;
+  margin-left: 10px;
+}
+
+.pt-3-half {
+  padding-top: 1.4rem;
 }

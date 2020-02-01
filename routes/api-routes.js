@@ -15,35 +15,75 @@ module.exports = function (app) {
             country: country
         });
         const budgetResult = await db.Budget.bulkCreate([
-            {category: "income", amount:0,cadence:52, UserId:result.dataValues.id},
-            {category: "homeUtil", amount:0,cadence : 52, UserId:result.dataValues.id},
-            {category: "groceries", amount:0,cadence : 52, UserId:result.dataValues.id},
-            {category: "transport", amount:0,cadence : 52, UserId:result.dataValues.id},
-            {category: "entEatout", amount:0,cadence : 52, UserId:result.dataValues.id}
+            { category: "income", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "homeUtil", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "groceries", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "transport", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "entEatout", amount: 0, cadence: 52, UserId: result.dataValues.id }
         ]);
-        
+
 
         const budgetDetailResult = await db.BudgetDetails.bulkCreate([
-                {name: "salary", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="income").id},
-                {name: "rental", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="income").id},
-                {name: "otherIncome", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="income").id},
-                {name: "gasElecWater", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="homeUtil").id},
-                {name: "phoneInt", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="homeUtil").id},
-                {name: "huOther", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="homeUtil").id},
-                {name: "food", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="groceries").id},
-                {name: "groceriesOther", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="groceries").id},
-                {name: "publicTrans", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="transport").id},
-                {name: "fuelParkings", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="transport").id},
-                {name: "eatout", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="entEatout").id},
-                {name: "ent", amount:0,cadence:52, UserId:result.dataValues.id, BudgetId:budgetResult.find(ele=> ele.category==="entEatout").id},
-            ]);
+            { name: "salary", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+            { name: "rental", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+            { name: "otherIncome", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+            { name: "gasElecWater", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "mortgage", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "phoneInt", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "huOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "food", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
+            { name: "groceriesOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
+            { name: "publicTrans", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
+            { name: "fuelParkings", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
+            { name: "eatout", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
+            { name: "ent", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
+        ]);
 
         res.redirect("/login");
     });
 
-    app.get("/api/getBudgetDetail", checkAuthenticated, async function (req, res) {
+    app.put("/api/updateBudgetDetails", checkAuthenticated, async function (req, res) {
         const userId = req.user.id;
-        const result= await db.Budget.findAll({where: {UserId: userId}});
+        for(let [name, fields] of Object.entries(req.body)){
+            await db.BudgetDetails.update(
+                {
+                    amount:fields.amount,
+                    cadence: fields.cadence,
+                }, {
+                where: {
+                    name: name,
+                    UserId: userId
+                }
+            });
+        };
+        res.status(200).end();
+    })
+
+    app.put("/api/updateBudget", checkAuthenticated, async function (req, res) {
+        const userId = req.user.id;
+        for(let [name, amount] of Object.entries(req.body)){
+            await db.Budget.update(
+                {
+                    amount: amount
+                }, {
+                where: {
+                    category: name,
+                    UserId: userId
+                }
+            });
+        };
+        res.status(200).end();
+    })
+
+    app.get("/api/getBudget", checkAuthenticated, async function (req, res) {
+        const userId = req.user.id;
+        const result = await db.Budget.findAll({ where: { UserId: userId } });
+        res.json(result);
+    })
+
+    app.get("/api/getBudgetDetails", checkAuthenticated, async function (req, res) {
+        const userId = req.user.id;
+        const result = await db.BudgetDetails.findAll({ where: { UserId: userId } });
         res.json(result);
     })
 
@@ -76,8 +116,8 @@ module.exports = function (app) {
 
     function checkAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
-          return next()
+            return next()
         }
         res.redirect('/login')
-      }
+    }
 }
