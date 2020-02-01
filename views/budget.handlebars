@@ -28,7 +28,7 @@
                 <a class="item">
                     <div><i class="cogs icon"></i>Budget</div>
                 </a>
-                <a class="item">
+                <a class="item" href="/expenses">
                     <div><i class="users icon"></i>Expenses</div>
                 </a>
             </div>
@@ -140,12 +140,12 @@
                                     <div class="field">
                                         <h4 for="salary" class="budget-label">Salary Income</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount income" id="salary" value="0"></div>
+                                    <div class="field"><input type="number" class="amount income" id="salary-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="salary-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
-                                            <input type="hidden" name="cadence">
+                                            <input type="hidden" name="salary-cadence">
                                             <div class="menu">
                                                 <div class="item" data-value="52">Weekly</div>
                                                 <div class="item" data-value="26">Fortnightly</div>
@@ -162,9 +162,9 @@
                                     <div class="field">
                                         <h4 for="income1" class="budget-label">Rental Income</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount income" id="rental-income" value="0"></div>
+                                    <div class="field"><input type="number" class="amount income" id="rental-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="rental-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -184,9 +184,9 @@
                                     <div class="field">
                                         <h4 for="income1" class="budget-label">Other Income</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount income" id="other-income" value="0"></div>
+                                    <div class="field"><input type="number" class="amount income" id="otherIncome-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="otherIncome-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -218,9 +218,9 @@
                                     <div class="field">
                                         <h4 for="gas-elec-water" class="budget-label">Gas,Electricity,Water </h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount home utilities" id="gas-elec-water" value="0"></div>
+                                    <div class="field"><input type="number" class="amount home utilities" id="gasElecWater-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="gasElecWater-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -239,9 +239,9 @@
                                     <div class="field">
                                         <h4 for="mortgage" class="budget-label">Mortgage Repayment</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount home utilities" id="mortgage" value="0"></div>
+                                    <div class="field"><input type="number" class="amount home utilities" id="mortgage-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="mortgage-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -261,9 +261,9 @@
                                     <div class="field">
                                         <h4 for="phone-internet" class="budget-label">Phone and Internet</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount home utilities" id="phone-internet" value="0"></div>
+                                    <div class="field"><input type="number" class="amount home utilities" id="phoneInt-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="phoneInt-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -283,9 +283,9 @@
                                     <div class="field">
                                         <h4 for="hu-other" class="budget-label">Other</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount home utilities" id="hu-other" value="0"></div>
+                                    <div class="field"><input type="number" class="amount home utilities" id="huOther-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="huOther-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -318,9 +318,9 @@
                                     <div class="field">
                                         <h4 for="income1" class="budget-label">Food</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount groceries" id="food" value="0"></div>
+                                    <div class="field"><input type="number" class="amount groceries" id="food-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="food-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -339,9 +339,9 @@
                                     <div class="field">
                                         <h4 for="income1" class="budget-label">Other</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount groceries" id="groceries-other" value="0"></div>
+                                    <div class="field"><input type="number" class="amount groceries" id="groceriesOther-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="groceriesOther-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -372,9 +372,9 @@
                                     <div class="field">
                                         <h4 for="income1" class="budget-label">Public Transport</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount transport" id="public-transport" value="0"></div>
+                                    <div class="field"><input type="number" class="amount transport" id="publicTrans-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="publicTrans-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -393,9 +393,9 @@
                                     <div class="field">
                                         <h4 for="income1" class="budget-label">Fuel and Parkings</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount transport" id="fuel-parkings" value="0"></div>
+                                    <div class="field"><input type="number" class="amount transport" id="fuelParkings-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="fuelParkings-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="gender">
@@ -426,9 +426,9 @@
                                     <div class="field">
                                         <h4 for="eatout" class="budget-label">Eat-out</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount ent eatout" id="eatout" value="0"></div>
+                                    <div class="field"><input type="number" class="amount ent eatout" id="eatout-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="eatout-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="cadence">
@@ -447,9 +447,9 @@
                                     <div class="field">
                                         <h4 for="ent" class="budget-label">Entertainment</h4>
                                     </div>
-                                    <div class="field"><input type="number" class="amount ent eatout" id="ent" value="0"></div>
+                                    <div class="field"><input type="number" class="amount ent eatout" id="ent-amount"></div>
                                     <div class="field">
-                                        <div class="ui selection dropdown">
+                                        <div class="ui selection dropdown" id="ent-cadence">
                                             <div class="default text">Cadence</div>
                                             <i class="dropdown icon"></i>
                                             <input type="hidden" name="cadence">
@@ -482,8 +482,8 @@
 
 
                     <div class="item" id="button-accordion">
-                        <button class="ui green button" type="submit"><i class="save icon"></i>Save Changes</button>
-                        <button class="ui red button"><i class="ban icon"></i>Discard Changes</button>
+                        <button class="ui green button" id="submit-budget"><i class="save icon"></i>Save Changes</button>
+                        <button class="ui red button" id="discard-budget"><i class="ban icon"></i>Discard Changes</button>
                     </div>
 
                 </div>
