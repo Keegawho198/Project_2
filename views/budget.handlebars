@@ -1,0 +1,19 @@
+<h1 class="ui header">Budget!</h1>
+<div class="ui container">
+    <form action="/api/budget" method="POST" class="ui form">
+        <div class="field">
+            <label>Category</label>
+            <input type="text" id="category" name="category" placeholder="Category">
+        </div>
+        <div class="field">
+            <label>Amount</label>
+            <input type="text" id="amount" name="amount" placeholder="Amount">
+        </div>
+        <button id="category-submit" class="ui button" type="submit">Submit</button>
+    </form>
+    <div>
+        <h2>Budget categories</h2>
+        <hr>
+        <div id="categories-area"></div>
+    </div>
+</div>

@@ -32,16 +32,36 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
-
-    app.get("/api/overspend", function (req, res) {
-        req.logout();
-        res.redirect("/");
-    });
-
     function checkNotAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
             return res.redirect('/index')
         }
         next()
     };
+    app.get("/api/budget", function (req, res) {
+        db.Budget.findAll({
+            where: {
+                UserId: req.user.id
+              },
+        }).then(function (results) {
+            console.log(results);
+            res.json(results);
+        });
+
+    });
+
+    app.post("/api/newcat", function (req, res) {
+
+        console.log("Budget Data:");
+        console.log(req.body);
+
+        db.Budget.create({
+            category: req.body.category,
+            amount: req.body.amount,
+            UserId: req.user.id
+        }).then(function (results) {
+            res.end();
+        });
+
+    });
 }
