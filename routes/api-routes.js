@@ -107,6 +107,50 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+
+    app.get("/api/percentage/:userId", function (req, res) {
+        db.Expense.findAll({
+            include: [{
+                model: db.Budget,
+                where: { UserId: req.params.userId }
+            }]
+        }).then(function (result) {
+            console.log(result);
+            var totalSpend = 0;
+            //var categories = [];
+            let catTotal = {};
+            let budgetTotal = {};
+            for (let entry of result) {
+                if (catTotal[entry.Budget.category]) catTotal[entry.Budget.category] += entry.amount;
+                else catTotal[entry.Budget.category] = entry.amount;
+
+                if (budgetTotal[entry.Budget.category]) budgetTotal[entry.Budget.category] += entry.Budget.amount;
+                else budgetTotal[entry.Budget.category] = entry.Budget.amount;
+
+                totalSpend += entry.amount;
+            }
+            console.log("budgetTotal");
+            console.log(budgetTotal);
+
+            var keys = Object.keys(catTotal);
+
+            console.log("catTotal");
+            console.log(catTotal);
+
+
+            let spendPercent = {};
+            for (let t of keys) {
+                if (!spendPercent[t]) spendPercent[t] = (catTotal[t] / budgetTotal[t]) * 100 + "%";
+            }
+            console.log("spendPercentage:")
+            console.log(spendPercent);
+    
+            res.json(spendPercent);
+        })
+    })
+
+
+
     function checkNotAuthenticated(req, res, next) {
         if (req.isAuthenticated()) {
             return res.redirect('/index')
