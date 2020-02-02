@@ -131,6 +131,8 @@ module.exports = function (app) {
             }
             console.log("budgetTotal");
             console.log(budgetTotal);
+           // budgetTotal.push();
+
 
             var keys = Object.keys(catTotal);
 

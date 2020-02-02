@@ -17,7 +17,7 @@ $('#over-spending-card').on("click", ".ui.button", function (event) {
     $('#utilization-card').dimmer("toggle");
     $('#financial-goal-card').dimmer("toggle");
     ($(this).text() === 'Clapse') ? $(this).text("Exceesive Expenditure") : $(this).text("Clapse");
-    $("#drilldown").transition("fade down",700);
+    $("#drilldown").transition("fade down", 700);
 });
 
 $('#daily-expenditure-card').on("click", function (event) {
@@ -66,6 +66,33 @@ $('#financial-goal-card').on("click", function (event) {
 
 
 $(document).ready(function () {
+    console.log("Working connected");
+    var billBar = $("#bills");
+
+    // const dataPath = './data/users.json';
+
+    // READ
+    // app.get('/users', (req, res) => {
+    //     fs.readFile(dataPath, 'utf8', (err, data) => {
+    //         if (err) {
+    //             throw err;
+    //         }
+
+    //         res.send(JSON.parse(data));
+    //     });
+    // });
+
+    setPercentage();
+
+    function setPercentage(Data) {
+        $.get("/api/percentage/:id", Data)
+            console.log(Data); //data is returning as empty object
+            // break;
+            
+    }
+
+
+
     $('.ui.dropdown').dropdown();
     $('.sidebar-menu-toggler').on('click', function () {
         var target = $(this).data('target');
@@ -78,6 +105,21 @@ $(document).ready(function () {
             .sidebar('toggle');
     });
 });
+
+//display percentages on side bar
+// $(document).ready(function () {
+//     var billBar = $("#bills");
+
+//     setPercentage();
+
+
+//     function setPercentage(Data) {
+//         $.get("/api/percentage/:id", Data)
+//             .then(getAuthors);
+//             console.log("Working connected");
+//     }
+
+// })
 
 $('.ui.accordion')
     .accordion();

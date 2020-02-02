@@ -44,4 +44,3 @@ db.sequelize.sync().then(()=>{
         console.log("server started\nhttp://localhost:%s",PORT);
     })
 })
- 
