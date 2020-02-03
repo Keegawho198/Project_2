@@ -5,7 +5,6 @@ $('.ui.selection.dropdown').dropdown();
 $('.ui.accordion')
     .accordion();
 
-
 const categories = {
     income: 0,
     homeUtil: 0,
@@ -25,9 +24,31 @@ function updateCategoryTotal(amountField, targetDom,income=false){
         $(targetDom).text(`$${subTotal*(-1)}`);
         return subTotal*(-1);
     }
-
 }
+
+// function updateCategoryTotal2(amountField, targetDom, categoryName,income=false){
+//     const subTotal = $(amountField).toArray().map(inc=>parseInt(inc.value)*parseInt($(`#${categoryName}-cadence`).dropdown("get value"))/52).reduce((inc1,inc2) => inc1+inc2),0);
+//     if(income){
+//         $(targetDom).text(`$${subTotal}`);
+//         return subTotal;
+//     }else{
+//         $(targetDom).text(`$${subTotal*(-1)}`);
+//         return subTotal*(-1);
+//     }
+// }
+
 $(document).ready(function getBudgetDetails(){
+    $('.ui.dropdown').dropdown();
+    $('.sidebar-menu-toggler').on('click', function () {
+        var target = $(this).data('target');
+        $(target)
+            .sidebar({
+                dinPage: true,
+                transition: 'overlay',
+                mobileTransition: 'overlay'
+            })
+            .sidebar('toggle');
+    });
     $.get("api/getBudget",function(res){
         res.forEach(data => categories[data.category] = data.amount);
         $('#budget-total-income').text(`$${categories.income}`);
@@ -61,6 +82,7 @@ $(`#incomes-accordion`).on(`input`,function(event){
 
 $(`#home-utilities-accordion`).on(`input`,function(event){
     categories["homeUtil"] = updateCategoryTotal(`.amount.home.utilities`,`#budget-total-home-utilities`);
+    // categories["homeUtil"] = updateCategoryTotal2(`.amount.home.utilities`,`#budget-total-home-utilities`,``);
     updateGrandTotal();
 })
 
