@@ -46,9 +46,9 @@ body>.grid {
   font-weight: bolder;
 }
 
-.ui.card {
+/* .ui.card {
   height: 190px;
-}
+} */
 
 .ui.card:hover {
   transform: scale(1.03, 1.03);
@@ -65,7 +65,7 @@ body>.grid {
   margin-top: 40px;
 }
 
-#drilldown {
+#expense-drilldown,#exc-drilldown,#budget-util, #fin-goal-tracking {
   display: none
 }
 
@@ -155,4 +155,10 @@ body>.grid {
 
 .pt-3-half {
   padding-top: 1.4rem;
+}
+
+
+#expense-ratios-canvas,#expense-barchart-canvas, #overall-util-canvas, #daily-util-canvas,#guidance-canvas,#sentiment-canvas {
+  width: 100%;
+  height: 500px;
 }

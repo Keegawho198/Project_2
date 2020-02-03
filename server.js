@@ -51,8 +51,8 @@ if (process.env.JAWSDB_URL !== "") {
   });
 };
 
-db.sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => {
-    console.log("server started\nhttp://localhost:%s", PORT);
-  })
-})
+db.sequelize.sync({force: true}).then(()=>{
+    app.listen(PORT, ()=>{
+        console.log("server started\nhttp://localhost:%s",PORT);
+    })
+

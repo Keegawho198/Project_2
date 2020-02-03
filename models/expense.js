@@ -1,3 +1,4 @@
+const moment = require("moment");
 module.exports = function (sequelize, DataTypes) {
     var Expense = sequelize.define("Expense", {
         title: {
@@ -12,17 +13,25 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
         },
         date: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
+            get: function() {
+                return moment.utc(this.getDataValue('date')).format('DD/MM/YYYY');
+            }
         },
         class: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         }
     });
 
     Expense.associate = function (models) {
         Expense.belongsTo(models.Budget, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+        Expense.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }

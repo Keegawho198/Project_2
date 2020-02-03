@@ -52,26 +52,26 @@
             <div class="active content">
                 <a class="item">
                     <div class="header">
-                        Budget Usage
+                        Month-to-Date Usage
                     </div>
                     <div class="ui tiny olive inverted progress">
-                        <div class="bar" style="width: 54%"></div>
-                        <div class="label">Food and Dine Out</div>
+                        <div class="bar" style="width: {{homeUtil.monthUtil}}%"></div>
+                        <div class="label">Home and Utilization</div>
                     </div>
 
                     <div class="ui tiny teal inverted progress">
-                        <div class="bar" style="width:78%"></div>
-                        <div class="label">Transportation</div>
+                        <div class="bar" style="width:{{groceries.monthUtil}}%"></div>
+                        <div class="label">Groceries</div>
                     </div>
 
                     <div class="ui tiny purple inverted progress">
-                        <div class="bar" style="width: 54%"></div>
-                        <div class="label">Bills</div>
+                        <div class="bar" style="width: {{transport.monthUtil}}%"></div>
+                        <div class="label">Transport</div>
                     </div>
 
                     <div class="ui tiny yellow inverted progress">
-                        <div class="bar" style="width:78%"></div>
-                        <div class="label">Entertainment</div>
+                        <div class="bar" style="width:{{entEatout.monthUtil}}%"></div>
+                        <div class="label">Entertainment and Eat-out</div>
                     </div>
                 </a>
             </div>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="header">
                             <div class="ui red header">
-                                3
+                                <span id="os-count"></span>
                             </div>
                         </div>
                         <div class="meta">
@@ -147,7 +147,7 @@
                             <i class="money bill alternate icon"></i>
                         </div>
                         <div class="header">
-                            <div class="ui header green">$35</div>
+                            <div class="ui header green" id="avg-daily-expense"></div>
                         </div>
                         <div class="meta">
                             Average Daily Expenditure
@@ -170,7 +170,7 @@
                             <i class="icon tachometer alternate"></i>
                         </div>
                         <div class="header">
-                            <div class="ui teal header">87.6%</div>
+                            <div class="ui teal header" id="overall-util"></div>
                         </div>
                         <div class="meta">
                             Overall Utilization
@@ -204,14 +204,16 @@
                     </div>
                     <div class="extra content">
                         <div class="ui two buttons">
-                            <div class="ui purple button">Financial Analytics</div>
+                            <div class="ui purple button">Financial Insights</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="widget" id="exc-expense">
-            <div class="ui raised segment" id="drilldown">
+
+
+        <div class="widget">
+            <div class="ui raised segment" id="exc-drilldown">
                 <h2 class="ui horizontal divider red header" id="osc-divider">
                     <i class="list alternate outline icon"></i>
                     Exceesive Expenditures
@@ -248,7 +250,45 @@
                     </div>
                 </div>
                 {{!-- column-chart --}}
-                <div class="ui grid stackable padded">
+                <div class="ui grid fluid stackable padded">
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile fluid column"
+                        id="exc-expense-column-container">
+                        <canvas id="exc-expense-column-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile fluid column"
+                        id="exc-expense-timeseries">
+                        <canvas id="exc-expense-bar-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="widget" id="expense-structure">
+            <div class="ui raised segment" id="expense-drilldown">
+                <h2 class="ui horizontal divider green header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Expenses Structure
+                </h2>
+                {{!-- column-chart --}}
+                <div class="ui raised segment">
+                    <div id="expense-ratios-canvas"></div>
+                </div>
+                <div class="ui raised segment">
+                    <div id="expense-barchart-canvas"></div>
+                </div>
+            </div>
+        </div>
+
+        {{!-- budget util --}}
+        <div class="widget">
+            <div class="ui raised segment" id="budget-util">
+                <h2 class="ui horizontal divider teal header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Budget Utilization
+                </h2>
+                {{!-- column-chart --}}
+                {{!-- <div class="ui grid stackable padded">
                     <div class="eight wide computer eight wide tablet sixteen wide mobile column"
                         id="exc-expense-column-container">
                         <canvas id="exc-expense-column-canvas" data-hidden=false height=200></canvas>
@@ -257,9 +297,45 @@
                         id="exc-expense-timeseries">
                         <canvas id="exc-expense-bar-canvas" data-hidden=false height=200></canvas>
                     </div>
+                </div> --}}
+                <div class="ui raised segment">
+                    <div id="overall-util-canvas"></div>
+                </div>
+                <div class="ui raised segment">
+                    <div id="daily-util-canvas"></div>
                 </div>
             </div>
         </div>
+
+        {{!-- financial Insights --}}
+        <div class="widget">
+            <div class="ui raised segment" id="fin-goal-tracking">
+                <h2 class="ui horizontal divider purple header" id="osc-divider">
+                    <i class="list alternate outline icon"></i>
+                    Financial Insights
+                </h2>
+                {{!-- column-chart --}}
+                {{!-- <div class="ui grid stackable padded">
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-column-container">
+                        <canvas id="exc-expense-column-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                    <div class="eight wide computer eight wide tablet sixteen wide mobile column"
+                        id="exc-expense-timeseries">
+                        <canvas id="exc-expense-bar-canvas" data-hidden=false height=200></canvas>
+                    </div>
+                </div> --}}
+
+                <div class="ui raised segment">
+                    <div id="guidance-canvas"></div>
+                </div>
+                <div class="ui raised segment">
+                    <div id="sentiment-canvas"></div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="widget" id="expense-table">
             <div class="ui raised segment">
                 <h2 class="ui horizontal divider grey header fluid">
@@ -272,35 +348,46 @@
                     <thead>
                         <tr>
                             <th class="table-thead">Category Name</th>
-                            <th class="table-thead">Budgeted Ammount</th>
+                            <th class="table-thead">Monthly Budgeted Amount</th>
                             <th class="table-thead">Month-to-Date Expense</th>
+                            <th class="table-thead">Month-to-Date Utilization</th>
+                            <th class="table-thead">Averyage Daily Utilization</th>
                             <th class="table-thead">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Transportation</td>
-                            <td>$600</td>
-                            <td>$200</td>
-                            <td>Under Budget</td>
-                        </tr>
-                        <tr class="error">
-                            <td>Food and Dine out</td>
-                            <td>$1000</td>
-                            <td>$1200</td>
-                            <td><i class="attention icon"></i>Over-spending</td>
+                            <td>Home and Utilization</td>
+                            <td class="monthlyBudget">${{homeUtil.budgetAmount}}</td>
+                            <td class="monthlyExpense">${{homeUtil.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{homeUtil.monthUtil}}%</td>
+                            <td class="dialyAvg">{{homeUtil.dailyUtil}}%</td>
+                            <td class="status">{{homeUtil.status}}</td>
                         </tr>
                         <tr>
-                            <td>Bills</td>
-                            <td>$1000</td>
-                            <td>$500</td>
-                            <td>Under Budget</td>
+                            <td>Groceries</td>
+                            <td class="monthlyBudget">${{groceries.budgetAmount}}</td>
+                            <td class="monthlyExpense">${{groceries.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{groceries.monthUtil}}%</td>
+                            <td class="dialyAvg">{{groceries.dailyUtil}}%</td>
+                            <td class="status">{{groceries.status}}</td>
+                        <tr>
+                            <td>Transport</td>
+                            <td class="monthlyBudget">${{transport.budgetAmount}}</td>
+                            <td class="monthlyExpense"> ${{transport.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{transport.monthUtil}}%</td>
+                            <td class="dialyAvg">{{transport.dailyUtil}}%</td>
+                            <td class="status">{{transport.status}}</td>
+                            {{!-- <td class="status">Over-spending</td> --}}
                         </tr>
-                        <tr class="warning">
-                            <td>Entertainment</td>
-                            <td>$1000</td>
-                            <td>$950</td>
-                            <td><i class="warning icon"></i>Close to the limit</td>
+                        <tr>
+                            <td>Entertainment and Eat-out</td>
+                            <td class="monthlyBudget">${{entEatout.budgetAmount}}</td>
+                            <td class="monthlyExpense">${{entEatout.monthExpAmount}}</td>
+                            <td class="monthlyUtil">{{entEatout.monthUtil}}%</td>
+                            <td class="dialyAvg">{{entEatout.dailyUtil}}%</td>
+                            <td class="status"></i>{{entEatout.status}}</td>
+                            {{!-- <td class="status">About to reach the limit</td> --}}
                         </tr>
                     </tbody>
                 </table>
