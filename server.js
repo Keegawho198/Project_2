@@ -39,7 +39,7 @@ app.use(methodOverride('_method'));
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
-if(process,env.JAWSDB_URL){
+if(process.env.JAWSDB_URL){
   connection = mysql.createConnection(process.env.host)
 } else{
   connection = mysql.createConnection({
