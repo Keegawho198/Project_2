@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.js">
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <!-- sidebar -->
 <div class="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
@@ -55,27 +55,27 @@
             </div>
             <div class="active content">
                 <a class="item">
-                    <div class="header">
-                        Budget Usage
+                     <div class="header">
+                        Month-to-Date Usage
                     </div>
                     <div class="ui tiny olive inverted progress">
-                        <div class="bar" style="width: 54%"></div>
-                        <div class="label">Food and Dine Out</div>
+                        <div class="bar" style="width: {{homeUtil.monthUtil}}%"></div>
+                        <div class="label">Home and Utilization</div>
                     </div>
 
                     <div class="ui tiny teal inverted progress">
-                        <div class="bar" style="width:78%"></div>
-                        <div class="label">Transportation</div>
+                        <div class="bar" style="width:{{groceries.monthUtil}}%"></div>
+                        <div class="label">Groceries</div>
                     </div>
 
                     <div class="ui tiny purple inverted progress">
-                        <div class="bar" style="width: 54%"></div>
-                        <div class="label">Bills</div>
+                        <div class="bar" style="width: {{transport.monthUtil}}%"></div>
+                        <div class="label">Transport</div>
                     </div>
 
                     <div class="ui tiny yellow inverted progress">
-                        <div class="bar" style="width:78%"></div>
-                        <div class="label">Entertainment</div>
+                        <div class="bar" style="width:{{entEatout.monthUtil}}%"></div>
+                        <div class="label">Entertainment and Eat-out</div>
                     </div>
                 </a>
             </div>
@@ -138,19 +138,18 @@
                                 <th class="table-thead">Amount</th>
                                 <th class="table-thead">Date</th>
                                 <th class="table-thead">Budget Category</th>
+                                <th class="table-thead">Sentiment</th>
                                 <th class="table-thead">Operations</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr data-rowid="1">
-                                <td class="title" contenteditable="true">Lunch</td>
-                                <td class="amount" contenteditable="true">30</td>
-                                <td class="date" contenteditable="true">
-                                    <div class="ui calendar" id="example2">
-                                        <div class="ui input left icon">
-                                            <i class="calendar icon"></i>
-                                            <input type="text" placeholder="Date">
-                                        </div>
+                                <td class="title" contenteditable="true">SUBMIT NEW Expenses</td>
+                                <td class="amount" contenteditable="true"></td>
+                                <td class="date">
+                                    <div class="ui icon input">
+                                        <i class="calendar icon"></i>
+                                        <input type="text" name="datepicker">
                                     </div>
                                 </td>
                                 <td class="category">
@@ -159,20 +158,83 @@
                                         <i class="dropdown icon"></i>
                                         <input type="hidden" name="expense-category">
                                         <div class="menu">
-                                            <div class="item" data-value="homeUtil">Home and Utilities</div>
-                                            <div class="item" data-value="groceries">Groceries</div>
-                                            <div class="item" data-value="transport">Transport</div>
-                                            <div class="item" data-value="entEatout">Entertainment and Eat-out</div>
+                                            <div class="item" data-value="2">Home and Utilities</div>
+                                            <div class="item" data-value="3">Groceries</div>
+                                            <div class="item" data-value="4">Transport</div>
+                                            <div class="item" data-value="5">Entertainment and Eat-out</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="sentiment">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-sentiment">
+                                        <div class="menu">
+                                            <div class="item" data-value="necessary">Necessary</div>
+                                            <div class="item" data-value="unnecessary">Unnecessary</div>
+                                            <div class="item" data-value="regreted">Regreted</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="operations">
                                     <div class="ui small fluid basic icon buttons">
-                                        <button class="ui disabled save button" ><i class="green save icon"></i></button>
-                                        <button class="ui button"><i class="red minus circle icon"></i></button>
+                                        <button class="ui table-submit new-record disabled save button"><i
+                                                class="green save icon"></i></button>
+                                        <button class="ui table-remove button"><i
+                                                class="red minus circle icon"></i></button>
                                     </div>
                                 </td>
                             </tr>
+
+                            {{#each expenseRecords}}
+                            <tr record-id="{{this.dataValues.id}}">
+                                <td class="title" contenteditable="true">{{this.dataValues.title}}</td>
+                                <td class="amount" contenteditable="true">{{this.dataValues.amount}}</td>
+                                <td class="date">
+                                    <div class="ui icon input">
+                                        <i class="calendar icon"></i>
+                                        <input type="text" name="datepicker" value="{{this.dataValues.date}}">
+                                    </div>
+                                </td>
+                                <td class="category">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-category"
+                                            value="{{this.dataValues.BudgetId}}">
+                                        <div class="menu">
+                                            <div class="item" data-value="{{../categories.homeUtil}}">Home and Utilities
+                                            </div>
+                                            <div class="item" data-value="{{../categories.groceries}}">Groceries</div>
+                                            <div class="item" data-value="{{../categories.transport}}">Transport</div>
+                                            <div class="item" data-value="{{../categories.entEatout}}">Entertainment and
+                                                Eat-out</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                 <td class="sentiment">
+                                    <div class="ui selection fluid dropdown">
+                                        <div class="default text">Please Select</div>
+                                        <i class="dropdown icon"></i>
+                                        <input type="hidden" name="expense-sentiment" value="{{this.dataValues.class}}">
+                                        <div class="menu">
+                                            <div class="item" data-value="necessary">Necessary</div>
+                                            <div class="item" data-value="unnecessary">Unnecessary</div>
+                                            <div class="item" data-value="regreted">Regreted</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="operations">
+                                    <div class="ui small fluid basic icon buttons">
+                                        <button class="ui table-submit disabled save button"><i
+                                                class="green save icon"></i></button>
+                                        <button class="ui table-remove button"><i
+                                                class="red minus circle icon"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

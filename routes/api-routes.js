@@ -44,10 +44,10 @@ module.exports = function (app) {
 
     app.put("/api/updateBudgetDetails", checkAuthenticated, async function (req, res) {
         const userId = req.user.id;
-        for(let [name, fields] of Object.entries(req.body)){
+        for (let [name, fields] of Object.entries(req.body)) {
             await db.BudgetDetails.update(
                 {
-                    amount:fields.amount,
+                    amount: fields.amount,
                     cadence: fields.cadence,
                 }, {
                 where: {
@@ -61,7 +61,7 @@ module.exports = function (app) {
 
     app.put("/api/updateBudget", checkAuthenticated, async function (req, res) {
         const userId = req.user.id;
-        for(let [name, amount] of Object.entries(req.body)){
+        for (let [name, amount] of Object.entries(req.body)) {
             await db.Budget.update(
                 {
                     amount: amount
@@ -77,6 +77,7 @@ module.exports = function (app) {
 
     app.get("/api/getBudget", checkAuthenticated, async function (req, res) {
         const userId = req.user.id;
+        console.log(req.user);
         const result = await db.Budget.findAll({ where: { UserId: userId } });
         res.json(result);
     })
@@ -87,6 +88,60 @@ module.exports = function (app) {
         res.json(result);
     })
 
+    // expenses
+    app.post("/api/newexpense", async (req, res) => {
+        const userId = req.user.id;
+        try {
+            const { title, amount, date, category } = req.body;
+            const data = await db.Expense.create({
+                title: title,
+                amount: amount,
+                class: "necessary",
+                date: date,
+                BudgetId: category,
+                UserId: userId
+            })
+            res.json(data);
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+            res.status(500).end();
+        }
+    })
+
+    app.put("/api/updateexpense", checkAuthenticated, async function (req, res) {
+        const userId = req.user.id;
+        const {id,title, amount, date, category, sentiment } = req.body;
+        await db.Expense.update(
+            {
+                title: title,
+                amount: amount,
+                date:date,
+                BudgetId: category,
+                class: sentiment
+            }, {
+            where: {
+                id: id
+            }
+        });
+        res.status(200).end();
+    })
+
+
+    app.delete("/api/deleteexpense/:recordid",  checkAuthenticated, async function (req, res) {
+        const recordId = req.params.recordid;
+        try {
+            const data = await db.Expense.destroy({
+                where: {
+                    id: recordId
+                }
+            })
+            res.status(200).end();
+        } catch (err) {
+            console.log(err)
+            res.status(500).end();
+        }
+    })
 
     app.post("/api/login", passport.authenticate(`local`, {
         successRedirect: `/index`,
@@ -102,9 +157,29 @@ module.exports = function (app) {
     });
 
 
-    app.get("/api/overspend", function (req, res) {
-        req.logout();
-        res.redirect("/");
+
+    app.get("/api/sentimentcounts", checkAuthenticated,async function (req, res) {
+        const userId = req.user.id;
+        try {
+            const results = {
+                necessary: 0,
+                unnecessary: 0,
+                regreted: 0
+            };
+            const data = await db.Expense.findAll({
+                where: {
+                    Userid: userId
+                }
+            })
+
+            data.forEach(element => {
+                results[element.class] += 1;
+            });
+            res.json(results);
+        } catch (err) {
+            console.log(err)
+            res.status(500).end();
+        }
     });
 
     function checkNotAuthenticated(req, res, next) {
