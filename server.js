@@ -40,19 +40,17 @@ app.use(methodOverride('_method'));
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
-if (process.env.JAWSDB_URL !== "") {
-  connection = mysql.createConnection(process.env.JAWSDB_URL)
-} else {
-  connection = mysql.createConnection({
-    host: "k2fqe1if4c7uowsh.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user: "aw8a610d32km6ght",
-    password: "xbqnbubqozkmbbhq",
-    database: "vk1v9g5hcuox5o0o"
-  });
-};
 
-db.sequelize.sync({force: true}).then(()=>{
-    app.listen(PORT, ()=>{
-        console.log("server started\nhttp://localhost:%s",PORT);
-    })
+  connection = mysql.createConnection({
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database
+  });
+
+db.sequelize.sync({ force: true }).then(() => {
+  app.listen(PORT, () => {
+    console.log("server started\nhttp://localhost:%s", PORT);
+  });
+});
 
