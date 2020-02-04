@@ -46,7 +46,7 @@ connection = mysql.createConnection({
   database: process.env.database
 });
 
-db.sequelize.sync().then(()=>{
+db.sequelize.sync({force:true}).then(()=>{
     app.listen(PORT, ()=>{
         console.log("server started\nhttp://localhost:%s",PORT);
     })
