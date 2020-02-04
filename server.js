@@ -8,7 +8,6 @@ const passport = require("./config/passport_config");
 const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require('method-override')
-const mysql = require("mysql");
 
 
 const app = express();
@@ -16,12 +15,12 @@ const PORT = process.env.PORT || 8080;
 const db = require("./models");
 
 //setup handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 //setup static files
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.use(flash());
@@ -40,17 +39,15 @@ app.use(methodOverride('_method'));
 require("./routes/html-routes")(app);
 require("./routes/api-routes")(app);
 
-
-  connection = mysql.createConnection({
-    host: process.env.host,
-    user: process.env.user,
-    password: process.env.password,
-    database: process.env.database
-  });
-
-db.sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log("server started\nhttp://localhost:%s", PORT);
-  });
+connection = mysql.createConnection({
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database
 });
 
+db.sequelize.sync().then(()=>{
+    app.listen(PORT, ()=>{
+        console.log("server started\nhttp://localhost:%s",PORT);
+    })
+})
