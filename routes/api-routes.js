@@ -14,13 +14,14 @@ module.exports = function (app) {
             gender: gender,
             country: country
         });
-        const budgetResult = await db.Budget.bulkCreate([
-            { category: "income", amount: 0, cadence: 52, UserId: result.dataValues.id },
-            { category: "homeUtil", amount: 0, cadence: 52, UserId: result.dataValues.id },
-            { category: "groceries", amount: 0, cadence: 52, UserId: result.dataValues.id },
-            { category: "transport", amount: 0, cadence: 52, UserId: result.dataValues.id },
-            { category: "entEatout", amount: 0, cadence: 52, UserId: result.dataValues.id }
-        ]);
+        
+        // const budgetResult = await db.Budget.bulkCreate([
+        //     { category: "income", amount: 0, cadence: 52, UserId: result.dataValues.id },
+        //     { category: "homeUtil", amount: 0, cadence: 52, UserId: result.dataValues.id },
+        //     { category: "groceries", amount: 0, cadence: 52, UserId: result.dataValues.id },
+        //     { category: "transport", amount: 0, cadence: 52, UserId: result.dataValues.id },
+        //     { category: "entEatout", amount: 0, cadence: 52, UserId: result.dataValues.id }
+        // ]);
 
 
         // const budgetDetailResult = await db.BudgetDetails.bulkCreate([
