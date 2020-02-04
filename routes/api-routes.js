@@ -23,21 +23,21 @@ module.exports = function (app) {
         ]);
 
 
-        const budgetDetailResult = await db.BudgetDetails.bulkCreate([
-            { name: "salary", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
-            { name: "rental", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
-            { name: "otherIncome", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
-            { name: "gasElecWater", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-            { name: "mortgage", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-            { name: "phoneInt", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-            { name: "huOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-            { name: "food", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
-            { name: "groceriesOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
-            { name: "publicTrans", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
-            { name: "fuelParkings", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
-            { name: "eatout", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
-            { name: "ent", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
-        ]);
+        // const budgetDetailResult = await db.BudgetDetails.bulkCreate([
+        //     { name: "salary", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+        //     { name: "rental", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+        //     { name: "otherIncome", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+        //     { name: "gasElecWater", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+        //     { name: "mortgage", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+        //     { name: "phoneInt", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+        //     { name: "huOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+        //     { name: "food", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
+        //     { name: "groceriesOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
+        //     { name: "publicTrans", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
+        //     { name: "fuelParkings", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
+        //     { name: "eatout", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
+        //     { name: "ent", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
+        // ]);
 
         res.redirect("/login");
     });
