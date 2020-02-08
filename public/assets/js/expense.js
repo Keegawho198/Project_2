@@ -136,7 +136,8 @@ $tableID.on('click', '.table-submit', function () {
             data: data
         }).then(() => {
             // location.reload();
-            $(this).addClass("disabled")
+            $(this).addClass("disabled");
+            location.reload();
 
         })
     } else {
@@ -145,8 +146,9 @@ $tableID.on('click', '.table-submit', function () {
             type: "PUT",
             data: data
         }).then(() => {
-            // location.reload();
+            
             $(this).addClass("disabled")
+            location.reload();
         })
 
     }
