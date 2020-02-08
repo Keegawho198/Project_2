@@ -3,8 +3,9 @@ const passport = require("../config/passport_config");
 
 module.exports = function (app) {
     //ll routes handling functions are defined here
-
     app.post("/api/signup", checkNotAuthenticated, async function (req, res) {
+        console.log("===========================================");
+        
         const { firstName, lastName, email, password, gender, country } = req.body;
         const result = await db.User.create({
             firstName: firstName,
@@ -149,6 +150,10 @@ module.exports = function (app) {
         failureRedirect: `/`,
         failureFlash: true
     }), (req, res) => {
+
+        console.log("=================================================");
+        console.log(req.user)
+        console.log("=================================================");
         res.json(req.user);
     });
 
