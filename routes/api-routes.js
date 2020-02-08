@@ -39,7 +39,7 @@ module.exports = function (app) {
         //     { name: "eatout", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
         //     { name: "ent", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
         // ]);
-
+        console.log(result);
         res.redirect("/login");
     });
 
