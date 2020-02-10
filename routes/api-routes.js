@@ -4,8 +4,7 @@ const passport = require("../config/passport_config");
 module.exports = function (app) {
     //ll routes handling functions are defined here
     app.post("/api/signup", checkNotAuthenticated, async function (req, res) {
-        console.log("===========================================");
-        
+
         const { firstName, lastName, email, password, gender, country } = req.body;
         const result = await db.User.create({
             firstName: firstName,
@@ -15,31 +14,31 @@ module.exports = function (app) {
             gender: gender,
             country: country
         });
-        
-        // const budgetResult = await db.Budget.bulkCreate([
-        //     { category: "income", amount: 0, cadence: 52, UserId: result.dataValues.id },
-        //     { category: "homeUtil", amount: 0, cadence: 52, UserId: result.dataValues.id },
-        //     { category: "groceries", amount: 0, cadence: 52, UserId: result.dataValues.id },
-        //     { category: "transport", amount: 0, cadence: 52, UserId: result.dataValues.id },
-        //     { category: "entEatout", amount: 0, cadence: 52, UserId: result.dataValues.id }
-        // ]);
+
+        const budgetResult = await db.Budget.bulkCreate([
+            { category: "income", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "homeUtil", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "groceries", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "transport", amount: 0, cadence: 52, UserId: result.dataValues.id },
+            { category: "entEatout", amount: 0, cadence: 52, UserId: result.dataValues.id }
+        ]);
 
 
-        // const budgetDetailResult = await db.BudgetDetails.bulkCreate([
-        //     { name: "salary", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
-        //     { name: "rental", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
-        //     { name: "otherIncome", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
-        //     { name: "gasElecWater", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-        //     { name: "mortgage", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-        //     { name: "phoneInt", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-        //     { name: "huOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
-        //     { name: "food", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
-        //     { name: "groceriesOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
-        //     { name: "publicTrans", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
-        //     { name: "fuelParkings", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
-        //     { name: "eatout", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
-        //     { name: "ent", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
-        // ]);
+        const budgetDetailResult = await db.BudgetDetails.bulkCreate([
+            { name: "salary", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+            { name: "rental", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+            { name: "otherIncome", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "income").id },
+            { name: "gasElecWater", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "mortgage", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "phoneInt", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "huOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "homeUtil").id },
+            { name: "food", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
+            { name: "groceriesOther", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "groceries").id },
+            { name: "publicTrans", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
+            { name: "fuelParkings", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "transport").id },
+            { name: "eatout", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
+            { name: "ent", amount: 0, cadence: 52, UserId: result.dataValues.id, BudgetId: budgetResult.find(ele => ele.category === "entEatout").id },
+        ]);
         console.log(result);
         res.redirect("/login");
     });
@@ -113,12 +112,12 @@ module.exports = function (app) {
 
     app.put("/api/updateexpense", checkAuthenticated, async function (req, res) {
         const userId = req.user.id;
-        const {id,title, amount, date, category, sentiment } = req.body;
+        const { id, title, amount, date, category, sentiment } = req.body;
         await db.Expense.update(
             {
                 title: title,
                 amount: amount,
-                date:date,
+                date: date,
                 BudgetId: category,
                 class: sentiment
             }, {
@@ -130,7 +129,7 @@ module.exports = function (app) {
     })
 
 
-    app.delete("/api/deleteexpense/:recordid",  checkAuthenticated, async function (req, res) {
+    app.delete("/api/deleteexpense/:recordid", checkAuthenticated, async function (req, res) {
         const recordId = req.params.recordid;
         try {
             const data = await db.Expense.destroy({
@@ -151,9 +150,6 @@ module.exports = function (app) {
         failureFlash: true
     }), (req, res) => {
 
-        console.log("=================================================");
-        console.log(req.user)
-        console.log("=================================================");
         res.json(req.user);
     });
 
@@ -164,7 +160,7 @@ module.exports = function (app) {
 
 
 
-    app.get("/api/sentimentcounts", checkAuthenticated,async function (req, res) {
+    app.get("/api/sentimentcounts", checkAuthenticated, async function (req, res) {
         const userId = req.user.id;
         try {
             const results = {
