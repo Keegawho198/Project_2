@@ -111,6 +111,8 @@ module.exports = function (app) {
   })
 
   app.get("/budget", checkAuthenticated, async function (req, res) {
+
+    console.log(req);
     const userName = `${req.user.firstName} ${req.user.lastName}`;
     const data = await getAccountDetails(req.user.id)
     res.render("budget", {
